@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOU-EA-ibm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOU-EA-ibm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -20,9 +21,6 @@
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZp-DZ-h6a">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="400" height="536"/>
-                                </variation>
                                 <connections>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="GkV-22-e2A"/>
                                 </connections>
@@ -31,54 +29,137 @@
                                 <rect key="frame" x="-10" y="-10" width="20" height="20"/>
                                 <color key="color" cocoaTouchSystemColor="darkTextColor"/>
                             </activityIndicatorView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P1m-ce-EOy">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="rewind" id="P8j-1v-scq">
+                                        <connections>
+                                            <action selector="onBackButtonPressed:" destination="BYZ-38-t0r" id="Rcf-Ao-QZb"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="fastForward" id="y3C-Hm-hv3">
+                                        <connections>
+                                            <action selector="onFowardButtonPressed:" destination="BYZ-38-t0r" id="47S-s0-FeP"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="refresh" id="W86-nc-wKC">
+                                        <connections>
+                                            <action selector="onReloadButtonPressed:" destination="BYZ-38-t0r" id="kUW-2z-EyA"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="stop" id="A8P-5F-ciM">
+                                        <connections>
+                                            <action selector="onStopLoadingButtonPressed:" destination="BYZ-38-t0r" id="66n-2p-uXc"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="it2-gC-Hit"/>
+                                    <barButtonItem systemItem="add" id="mWE-XF-Xam">
+                                        <connections>
+                                            <action selector="onAlertButtonPressed:" destination="BYZ-38-t0r" id="Zzd-ul-KFJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3qI-0o-2o2">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="vju-uW-l22"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="vju-uW-l22"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="vju-uW-l22"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="uQf-Ba-rLC"/>
+                                </connections>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="3qI-0o-2o2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4p2-VI-cEm"/>
+                            <constraint firstItem="nZp-DZ-h6a" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="CBh-6r-9JX"/>
                             <constraint firstItem="1pw-Ej-YSG" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="DCu-wd-kVY"/>
+                            <constraint firstItem="P1m-ce-EOy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="J0p-RP-unq"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="P1m-ce-EOy" secondAttribute="bottom" id="L5h-s1-0nZ"/>
+                            <constraint firstItem="nZp-DZ-h6a" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="MRl-yT-5SV"/>
+                            <constraint firstItem="3qI-0o-2o2" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Nia-KR-fRu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="P1m-ce-EOy" secondAttribute="trailing" constant="-20" id="S3f-em-FUU"/>
+                            <constraint firstItem="P1m-ce-EOy" firstAttribute="top" secondItem="nZp-DZ-h6a" secondAttribute="bottom" id="TSd-bJ-c59"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nZp-DZ-h6a" secondAttribute="trailing" constant="-20" id="ZXd-mX-e3B"/>
+                            <constraint firstItem="3qI-0o-2o2" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="gcm-hL-hi2"/>
+                            <constraint firstItem="P1m-ce-EOy" firstAttribute="top" secondItem="nZp-DZ-h6a" secondAttribute="bottom" id="iaB-SE-ys9"/>
+                            <constraint firstItem="3qI-0o-2o2" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="nZO-4r-RdX"/>
                             <constraint firstItem="1pw-Ej-YSG" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qdh-Ui-aPc"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="nZp-DZ-h6a"/>
                                 <exclude reference="1pw-Ej-YSG"/>
+                                <exclude reference="P1m-ce-EOy"/>
+                                <exclude reference="3qI-0o-2o2"/>
                             </mask>
                             <mask key="constraints">
+                                <exclude reference="CBh-6r-9JX"/>
+                                <exclude reference="MRl-yT-5SV"/>
+                                <exclude reference="ZXd-mX-e3B"/>
+                                <exclude reference="4p2-VI-cEm"/>
+                                <exclude reference="Nia-KR-fRu"/>
+                                <exclude reference="gcm-hL-hi2"/>
+                                <exclude reference="nZO-4r-RdX"/>
                                 <exclude reference="DCu-wd-kVY"/>
                                 <exclude reference="qdh-Ui-aPc"/>
+                                <exclude reference="J0p-RP-unq"/>
+                                <exclude reference="S3f-em-FUU"/>
+                                <exclude reference="TSd-bJ-c59"/>
+                                <exclude reference="iaB-SE-ys9"/>
+                                <exclude reference="L5h-s1-0nZ"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
                                 <include reference="nZp-DZ-h6a"/>
                                 <include reference="1pw-Ej-YSG"/>
+                                <include reference="P1m-ce-EOy"/>
+                                <include reference="3qI-0o-2o2"/>
                             </mask>
                             <mask key="constraints">
+                                <include reference="CBh-6r-9JX"/>
+                                <include reference="MRl-yT-5SV"/>
+                                <include reference="ZXd-mX-e3B"/>
+                                <include reference="4p2-VI-cEm"/>
+                                <include reference="Nia-KR-fRu"/>
+                                <include reference="gcm-hL-hi2"/>
+                                <include reference="nZO-4r-RdX"/>
                                 <include reference="DCu-wd-kVY"/>
                                 <include reference="qdh-Ui-aPc"/>
+                                <include reference="J0p-RP-unq"/>
+                                <include reference="S3f-em-FUU"/>
+                                <include reference="TSd-bJ-c59"/>
+                                <include reference="iaB-SE-ys9"/>
+                                <include reference="L5h-s1-0nZ"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" id="xvq-r6-SSP">
                         <nil key="title"/>
-                        <textField key="titleView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="2tv-5y-LqH">
-                            <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go"/>
-                            <connections>
-                                <outlet property="delegate" destination="BYZ-38-t0r" id="Yge-mc-bC9"/>
-                            </connections>
-                        </textField>
                     </navigationItem>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="spinner" destination="1pw-Ej-YSG" id="DjF-OF-wKe"/>
-                        <outlet property="urlTextField" destination="2tv-5y-LqH" id="aHb-eB-LNc"/>
                         <outlet property="variableWebView" destination="nZp-DZ-h6a" id="fn8-xl-hIN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864" y="997"/>
+            <point key="canvasLocation" x="863.25" y="996.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ea7-0l-zja">

@@ -10,7 +10,6 @@
 
 @interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *variableWebView;
-@property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 
 @end
@@ -19,15 +18,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-}
+    [self loadURLwithString:@"http://www.apple.com"];
+   }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [self loadURLwithString:textField.text];
     return true;
-    
 }
-
+// helper method
 -(void)loadURLwithString:(NSString *)string {
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
@@ -36,11 +34,22 @@
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
     [self.spinner startAnimating];
-    
 }
-
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.spinner stopAnimating];
 }
+//- (IBAction)onBackButtonPressed:(UIBarButtonItem *)sender {
+//    [self.variableWebView canGoBack];
+//}
+//- (IBAction)onFowardButtonPressed:(UIBarButtonItem *)sender {
+//}
+//- (IBAction)onReloadButtonPressed:(UIBarButtonItem *)sender {
+//}
+//- (IBAction)onStopLoadingButtonPressed:(UIBarButtonItem *)sender {
+//}
+//- (IBAction)onAlertButtonPressed:(UIBarButtonItem *)sender {
+//}
+
+
 
 @end
