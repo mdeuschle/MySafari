@@ -11,6 +11,8 @@
 @interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *variableWebView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *goBackButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *goForwardButton;
 
 @end
 
@@ -19,10 +21,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadURLwithString:@"http://www.apple.com"];
+    self.goBackButton.enabled = false;
+    self.goForwardButton.enabled = false;
    }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self loadURLwithString:textField.text];
+    
+    NSString *enterText = [NSString stringWithFormat:@"https://%@",textField.text];
+    [self loadURLwithString:enterText];
     return true;
 }
 // helper method
@@ -30,26 +36,34 @@
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.variableWebView loadRequest:request];
+    
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
+    self.goForwardButton.enabled = self.variableWebView.canGoForward;
+    self.goBackButton.enabled = self.variableWebView.canGoBack;
     [self.spinner startAnimating];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     [self.spinner stopAnimating];
 }
-//- (IBAction)onBackButtonPressed:(UIBarButtonItem *)sender {
-//    [self.variableWebView canGoBack];
-//}
-//- (IBAction)onFowardButtonPressed:(UIBarButtonItem *)sender {
-//}
-//- (IBAction)onReloadButtonPressed:(UIBarButtonItem *)sender {
-//}
-//- (IBAction)onStopLoadingButtonPressed:(UIBarButtonItem *)sender {
-//}
-//- (IBAction)onAlertButtonPressed:(UIBarButtonItem *)sender {
-//}
+- (IBAction)onBackButtonPressed:(UIBarButtonItem *)sender {
+    [self.variableWebView goBack];
+}
+- (IBAction)onFowardButtonPressed:(UIBarButtonItem *)sender {
+    [self.variableWebView goForward];
+}
+- (IBAction)onReloadButtonPressed:(UIBarButtonItem *)sender {
+    [self.variableWebView reload];
+}
+- (IBAction)onStopLoadingButtonPressed:(UIBarButtonItem *)sender {
+    [self.variableWebView stopLoading];
+}
+- (IBAction)onAlertButtonPressed:(UIBarButtonItem *)sender {
+}
 
+- (IBAction)onDismissKeyboard:(id)sender {
+}
 
 
 @end

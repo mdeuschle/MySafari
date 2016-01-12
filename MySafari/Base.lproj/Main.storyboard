@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOU-EA-ibm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="kOU-EA-ibm">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -15,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nZp-DZ-h6a">
@@ -66,7 +67,7 @@
                                     <constraint firstAttribute="height" constant="30" id="vju-uW-l22"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="URL" returnKeyType="go"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="vju-uW-l22"/>
@@ -78,6 +79,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
+                                    <action selector="onDismissKeyboard:" destination="BYZ-38-t0r" eventType="editingDidEndOnExit" id="ef6-R6-vkw"/>
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="uQf-Ba-rLC"/>
                                 </connections>
                             </textField>
@@ -107,20 +109,20 @@
                                 <exclude reference="3qI-0o-2o2"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="CBh-6r-9JX"/>
-                                <exclude reference="MRl-yT-5SV"/>
-                                <exclude reference="ZXd-mX-e3B"/>
+                                <exclude reference="L5h-s1-0nZ"/>
+                                <exclude reference="DCu-wd-kVY"/>
+                                <exclude reference="qdh-Ui-aPc"/>
                                 <exclude reference="4p2-VI-cEm"/>
                                 <exclude reference="Nia-KR-fRu"/>
                                 <exclude reference="gcm-hL-hi2"/>
                                 <exclude reference="nZO-4r-RdX"/>
-                                <exclude reference="DCu-wd-kVY"/>
-                                <exclude reference="qdh-Ui-aPc"/>
                                 <exclude reference="J0p-RP-unq"/>
                                 <exclude reference="S3f-em-FUU"/>
                                 <exclude reference="TSd-bJ-c59"/>
                                 <exclude reference="iaB-SE-ys9"/>
-                                <exclude reference="L5h-s1-0nZ"/>
+                                <exclude reference="CBh-6r-9JX"/>
+                                <exclude reference="MRl-yT-5SV"/>
+                                <exclude reference="ZXd-mX-e3B"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -131,20 +133,20 @@
                                 <include reference="3qI-0o-2o2"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="CBh-6r-9JX"/>
-                                <include reference="MRl-yT-5SV"/>
-                                <include reference="ZXd-mX-e3B"/>
+                                <include reference="L5h-s1-0nZ"/>
+                                <include reference="DCu-wd-kVY"/>
+                                <include reference="qdh-Ui-aPc"/>
                                 <include reference="4p2-VI-cEm"/>
                                 <include reference="Nia-KR-fRu"/>
                                 <include reference="gcm-hL-hi2"/>
                                 <include reference="nZO-4r-RdX"/>
-                                <include reference="DCu-wd-kVY"/>
-                                <include reference="qdh-Ui-aPc"/>
                                 <include reference="J0p-RP-unq"/>
                                 <include reference="S3f-em-FUU"/>
                                 <include reference="TSd-bJ-c59"/>
                                 <include reference="iaB-SE-ys9"/>
-                                <include reference="L5h-s1-0nZ"/>
+                                <include reference="CBh-6r-9JX"/>
+                                <include reference="MRl-yT-5SV"/>
+                                <include reference="ZXd-mX-e3B"/>
                             </mask>
                         </variation>
                     </view>
@@ -153,6 +155,8 @@
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="goBackButton" destination="P8j-1v-scq" id="bgV-rK-2Nn"/>
+                        <outlet property="goForwardButton" destination="y3C-Hm-hv3" id="7OL-Kn-aq9"/>
                         <outlet property="spinner" destination="1pw-Ej-YSG" id="DjF-OF-wKe"/>
                         <outlet property="variableWebView" destination="nZp-DZ-h6a" id="fn8-xl-hIN"/>
                     </connections>
