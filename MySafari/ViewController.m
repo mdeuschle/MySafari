@@ -26,17 +26,26 @@
    }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    
-    NSString *enterText = [NSString stringWithFormat:@"https://%@",textField.text];
-    [self loadURLwithString:enterText];
-    return true;
+
+    NSString *enterText = textField.text;
+    BOOL hasPrefix = ([enterText hasPrefix:@"http://"] || [enterText hasPrefix:@"https://"]);
+    {
+        if (hasPrefix == true) {
+            [self loadURLwithString:enterText];
+        }
+        else{
+            NSString *enterText2 = [NSString stringWithFormat:@"https://%@",textField.text];
+            [self loadURLwithString:enterText2];
+        }
+        return self;
+    }
+
 }
 // helper method
 -(void)loadURLwithString:(NSString *)string {
     NSURL *url = [NSURL URLWithString:string];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [self.variableWebView loadRequest:request];
-    
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
@@ -60,10 +69,13 @@
     [self.variableWebView stopLoading];
 }
 - (IBAction)onAlertButtonPressed:(UIBarButtonItem *)sender {
+
+    
 }
 
 - (IBAction)onDismissKeyboard:(id)sender {
 }
+
 
 
 @end
