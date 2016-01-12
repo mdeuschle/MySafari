@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *goBackButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *goForwardButton;
+@property (weak, nonatomic) IBOutlet UITextField *urlTextField;
 
 @end
 
@@ -20,9 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self loadURLwithString:@"http://www.apple.com"];
     self.goBackButton.enabled = false;
     self.goForwardButton.enabled = false;
+    self.navigationController.hidesBarsOnSwipe = true;
+    //self.navigationItem.title = @"Title";
+    self.title = @"Apple";
+
    }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -41,6 +47,7 @@
     }
 
 }
+
 // helper method
 -(void)loadURLwithString:(NSString *)string {
     NSURL *url = [NSURL URLWithString:string];
@@ -54,7 +61,12 @@
     [self.spinner startAnimating];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSURLRequest *currentRequest = [self.variableWebView request];
+    NSURL *currentURL = [currentRequest URL];
+    self.urlTextField.text = currentURL.absoluteString;
+    
     [self.spinner stopAnimating];
+    
 }
 - (IBAction)onBackButtonPressed:(UIBarButtonItem *)sender {
     [self.variableWebView goBack];
@@ -69,6 +81,12 @@
     [self.variableWebView stopLoading];
 }
 - (IBAction)onAlertButtonPressed:(UIBarButtonItem *)sender {
+    UIAlertController *comingSoon = [UIAlertController alertControllerWithTitle:@"Coming Soon!" message:@"Stay tuned!" preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+    
+    [comingSoon addAction:cancel];
+    [self presentViewController:comingSoon animated:YES completion:nil];
 
     
 }
