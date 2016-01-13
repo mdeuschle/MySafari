@@ -23,12 +23,17 @@
     [super viewDidLoad];
     
     [self loadURLwithString:@"http://www.apple.com"];
+
+    // disable goBack and goFoward buttons since first page
     self.goBackButton.enabled = false;
     self.goForwardButton.enabled = false;
+
+    // sweet method that hides navBar on swipe
     self.navigationController.hidesBarsOnSwipe = true;
-    //self.navigationItem.title = @"Title";
-    self.title = @"Apple";
+
+    // so the viewController can be delegate of srollview
     self.variableWebView.scrollView.delegate = self;
+
    }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -57,15 +62,20 @@
 -(void)webViewDidStartLoad:(UIWebView *)webView {
     [self.spinner startAnimating];
 }
+
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
     self.goForwardButton.enabled = self.variableWebView.canGoForward;
     self.goBackButton.enabled = self.variableWebView.canGoBack;
-    NSURLRequest *currentRequest = [self.variableWebView request];
-    NSURL *currentURL = [currentRequest URL];
-    self.urlTextField.text = currentURL.absoluteString;
+
+    // set title with webpage title
+    self.title = self.variableWebView.request.URL.host;
+
+    // add URL to textfield
+    self.urlTextField.text = [[webView.request URL]absoluteString];
     
     [self.spinner stopAnimating];
 }
+
 - (IBAction)onBackButtonPressed:(UIBarButtonItem *)sender {
     [self.variableWebView goBack];
 }
@@ -78,6 +88,7 @@
 - (IBAction)onStopLoadingButtonPressed:(UIBarButtonItem *)sender {
     [self.variableWebView stopLoading];
 }
+
 - (IBAction)onAlertButtonPressed:(UIBarButtonItem *)sender {
     UIAlertController *comingSoon = [UIAlertController alertControllerWithTitle:@"Coming Soon!" message:@"Stay tuned!" preferredStyle:UIAlertControllerStyleAlert];
     
