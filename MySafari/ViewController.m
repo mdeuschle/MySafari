@@ -55,11 +55,11 @@
 }
 
 -(void)webViewDidStartLoad:(UIWebView *)webView {
-    self.goForwardButton.enabled = self.variableWebView.canGoForward;
-    self.goBackButton.enabled = self.variableWebView.canGoBack;
     [self.spinner startAnimating];
 }
 -(void)webViewDidFinishLoad:(UIWebView *)webView {
+    self.goForwardButton.enabled = self.variableWebView.canGoForward;
+    self.goBackButton.enabled = self.variableWebView.canGoBack;
     NSURLRequest *currentRequest = [self.variableWebView request];
     NSURL *currentURL = [currentRequest URL];
     self.urlTextField.text = currentURL.absoluteString;
