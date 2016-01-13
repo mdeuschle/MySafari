@@ -24,10 +24,6 @@
     
     [self loadURLwithString:@"http://www.apple.com"];
 
-    // disable goBack and goFoward buttons since first page
-    self.goBackButton.enabled = false;
-    self.goForwardButton.enabled = false;
-
     // sweet method that hides navBar on swipe
     self.navigationController.hidesBarsOnSwipe = true;
 
