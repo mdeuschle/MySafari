@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@interface ViewController () <UIWebViewDelegate, UITextFieldDelegate>
+@interface ViewController () <UIWebViewDelegate, UITextFieldDelegate, UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIWebView *variableWebView;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *spinner;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *goBackButton;
@@ -28,7 +28,7 @@
     self.navigationController.hidesBarsOnSwipe = true;
     //self.navigationItem.title = @"Title";
     self.title = @"Apple";
-
+    self.variableWebView.scrollView.delegate = self;
    }
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -45,7 +45,6 @@
         }
         return self;
     }
-
 }
 
 // helper method
@@ -66,7 +65,6 @@
     self.urlTextField.text = currentURL.absoluteString;
     
     [self.spinner stopAnimating];
-    
 }
 - (IBAction)onBackButtonPressed:(UIBarButtonItem *)sender {
     [self.variableWebView goBack];
@@ -87,13 +85,28 @@
     
     [comingSoon addAction:cancel];
     [self presentViewController:comingSoon animated:YES completion:nil];
-
-    
 }
 
 - (IBAction)onDismissKeyboard:(id)sender {
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    CGPoint pan = [scrollView.panGestureRecognizer translationInView:scrollView.superview];
 
+    if(pan.y < 0)
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.3];
+        [self.urlTextField setAlpha:0];
+        [UIView commitAnimations];
+    } else
+    {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.2];
+        [self.urlTextField setAlpha:1];
+        [UIView commitAnimations];
+    }
+}
 
 @end
